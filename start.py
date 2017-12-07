@@ -18,11 +18,11 @@ LED_STRIP = ws.WS2811_STRIP_GRB   # Strip type and colour ordering
 
 screenwidth = 8
 screenheight = 4
+server = 'https://openpixel.batu.one'
 
 def batu(strip):
-    pngid = "{0:0=6d}".format(int(urllib2.urlopen('https://openpixel.batu.one/id.txt').read()))
-    file = urllib2.urlopen(
-        'https://openpixel.batu.one/img/' + pngid + '.png').read()
+    pngid = "{0:0=6d}".format(int(urllib2.urlopen(server + '/id.txt').read()))
+    file = urllib2.urlopen(server + '/img/' + pngid + '.png').read()
     image = Image.open(StringIO.StringIO(file)).convert('RGB')
     pixeldata = list(image.getdata())
     for y in xrange(screenheight):
